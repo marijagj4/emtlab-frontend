@@ -16,8 +16,13 @@ const Header = ({ isAuthenticated, onLogout }: HeaderProps) => {
     };
 
     return (
-        <AppBar position="static">
-
+        <AppBar
+            position="static"
+            sx={{
+                background: '#d8c4b6',
+                boxShadow: 'none',
+            }}
+        >
             <Toolbar>
 
                 <Typography

@@ -8,6 +8,7 @@ export const useAuth = () => {
     );
 
     const [loading, setLoading] = useState(false);
+
     const [error, setError] = useState<string | null>(null);
 
     const login = async (username: string, password: string) => {
@@ -17,13 +18,14 @@ export const useAuth = () => {
 
         try {
 
-            const { token, role } = await authRepository.login({
+            const response = await authRepository.login({
                 username,
                 password
             });
 
-            localStorage.setItem('accessToken', token);
-            localStorage.setItem('role', role);
+            localStorage.setItem('accessToken', response.token);
+            localStorage.setItem('role', response.role);
+            localStorage.setItem('username', username);
 
             setIsAuthenticated(true);
 
@@ -32,6 +34,7 @@ export const useAuth = () => {
         } catch {
 
             setError('Invalid username or password');
+
             return false;
 
         } finally {
@@ -45,6 +48,7 @@ export const useAuth = () => {
 
         localStorage.removeItem('accessToken');
         localStorage.removeItem('role');
+        localStorage.removeItem('username');
 
         setIsAuthenticated(false);
     };

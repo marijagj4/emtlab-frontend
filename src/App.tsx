@@ -13,10 +13,27 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 const theme = createTheme({
-  palette: {
-    primary: { main: '#1976d2' },
-    secondary: { main: '#dc004e' },
-  },
+    palette: {
+        primary: {
+            main: '#c8b6a6',
+        },
+
+        secondary: {
+            main: '#a4907c',
+        },
+
+        background: {
+            default: '#f8f5f2',
+        },
+    },
+
+    typography: {
+        fontFamily: 'Poppins, Roboto, sans-serif',
+    },
+
+    shape: {
+        borderRadius: 16,
+    },
 });
 
 const isAuthenticated = () => !!localStorage.getItem('accessToken');
