@@ -1,21 +1,30 @@
 import apiClient from './axiosInstance';
 
-interface LoginRequest {
-    username: string;
-    password: string;
-}
-
-interface AuthResponse {
-    token: string;
-}
-
 export const authRepository = {
-    login: async (credentials: LoginRequest): Promise<AuthResponse> => {
-        const response = await apiClient.post<AuthResponse>('/auth/login', credentials);
+
+    login: async (data: {
+        username: string;
+        password: string;
+    }) => {
+
+        const response = await apiClient.post(
+            '/auth/login',
+            data
+        );
+
         return response.data;
     },
-    register: async (credentials: LoginRequest): Promise<AuthResponse> => {
-        const response = await apiClient.post<AuthResponse>('/auth/register', credentials);
+
+    register: async (data: {
+        username: string;
+        password: string;
+    }) => {
+
+        const response = await apiClient.post(
+            '/auth/register',
+            data
+        );
+
         return response.data;
-    },
+    }
 };
